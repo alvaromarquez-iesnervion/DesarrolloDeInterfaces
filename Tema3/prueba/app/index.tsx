@@ -1,11 +1,14 @@
 import { Button } from "@react-navigation/elements";
 import { Text, View } from "react-native";
 
-function pulsar() {
+
+export default function Index() {
+
+  function pulsar() {
   alert("Hola mundo");
 }
 
-export default function Index() {
+
   return (
     <View
       style={{
