@@ -1,4 +1,9 @@
+import { Button } from "@react-navigation/elements";
 import { Text, View } from "react-native";
+
+function pulsar() {
+  alert("Hola mundo");
+}
 
 export default function Index() {
   return (
@@ -9,7 +14,11 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Hola mundo</Text>
+      <Text>HolaMundo</Text>
+      <Button onPress={() => alert("Hola mundo")}> Pulsar con funcion anónima </Button>
+      
+      <Button onPress={pulsar}> Pulsar con funcion </Button>
+    
     </View>
   );
 }
