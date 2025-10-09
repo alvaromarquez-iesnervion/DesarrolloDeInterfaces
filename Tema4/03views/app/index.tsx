@@ -34,7 +34,7 @@ export default function Index() {
 
 const styles=StyleSheet.create({
     container: {
-    flex: 1,                    // 👈 ocupa toda la pantalla
+    flex: 1,                    
     backgroundColor: "#fff",
     },
 
