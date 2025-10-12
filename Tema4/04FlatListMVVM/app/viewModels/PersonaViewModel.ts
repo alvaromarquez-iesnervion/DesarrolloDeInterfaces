@@ -1,12 +1,18 @@
 import { RepositoryPersona } from "../models/data/RepositoryPersona";
+import Persona from  "../models/entities/PersonaModel";
 
 export class PersonaViewModel {
-  public getPersonas(): { id: number; nombre: string }[] {
-    const personas = RepositoryPersona.getPersonas();
-    return personas.map((p) => ({
-      id: p.getId(),
-      nombre: p.getFullName(),
-    }));
+
+  private personas: Persona[];
+
+  constructor() {
+    this.personas = RepositoryPersona.getPersonas();
   }
+
+  public getPersonas(): Persona[] {
+    return this.personas;
+  }
+
+  
 }
 
