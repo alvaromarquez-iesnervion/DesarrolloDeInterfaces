@@ -1,6 +1,12 @@
 import Persona from "../entities/PersonaModel";
 
 export class RepositoryPersona {
+  /**
+   * Funcion static que devuelve un listado de personas
+   * pre-c: nada
+   * post-c: El listado de personas no puede estar vacio
+   * 
+   */
   public static getPersonas(): Persona[] {
     return [
       new Persona(1, "Lucía", "Gómez Pérez"),

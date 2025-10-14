@@ -1,15 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Text, View, FlatList, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View, FlatList, StyleSheet, Pressable } from "react-native";
 import { PersonaViewModel } from "../viewModels/PersonaViewModel";
 import Persona from "../models/entities/PersonaModel";
 
 export const PersonaListView = () => {
-  const vm = useMemo(() => new PersonaViewModel(), []);
-  const [personas, setPersonas] = useState<Persona[]>([]);
-
-  useEffect(() => {
-    setPersonas(vm.getPersonas());
-  }, [vm]);
+  const vm =  new PersonaViewModel(); //instancia del ViewModel
+  const personas : Persona[] = vm.getPersonas(); //estado local para almacenar las personas
+  
 
   return (
     <View style={styles.container}>
@@ -19,7 +16,10 @@ export const PersonaListView = () => {
         keyExtractor={(item) => item.Id().toString()}
         renderItem={({ item }) => (
           <View style={styles.item}>
-            <Text style={styles.text}>{item.getFullName()}</Text>
+            <Pressable style={styles.button}
+            onPress={() => { vm.selectedPersona = item; }}>
+              {item.getFullName()}
+            </Pressable>
           </View>
         )}
       />
@@ -50,5 +50,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 16,
     color: "#2C3E50",
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+    borderRadius: 8,
   },
 });
