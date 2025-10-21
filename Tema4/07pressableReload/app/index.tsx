@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Pressable, ActivityIndicator, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons"; // Librería de iconos (ya incluida en Expo)
+import { Ionicons } from "@expo/vector-icons";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(false); // controla si se muestra el spinner
@@ -42,7 +42,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignItems: "center", gap: 20 },
   boton: {
-    flexDirection: "row", 
+    flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#4A90E2",
     paddingVertical: 12,
