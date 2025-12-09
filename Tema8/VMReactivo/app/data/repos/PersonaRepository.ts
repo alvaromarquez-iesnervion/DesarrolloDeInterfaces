@@ -5,6 +5,7 @@ import { Persona } from "@/app/domain/entities/Persona";
 @injectable()
 export class PersonasRepository implements IPersonaRepository {
 
+ 
   getListadoCompletoPersonas(): Persona[] {
 
     const personas: Persona[] = [];

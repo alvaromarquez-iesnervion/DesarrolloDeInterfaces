@@ -1,7 +1,10 @@
 import { TYPES } from "@/app/core/types";
 import { Persona } from "@/app/domain/entities/Persona";
-import { IRepositoryPersonas } from "@/app/domain/repos/IPersonaRepository";
+import { IPersonaRepositoryUseCase } from "@/app/domain/interfaces/IPersonaRepositoryUseCase";
+import { IPersonaRepository } from "@/app/domain/repos/IPersonaRepository";
 import { inject } from "inversify";
+import {  makeAutoObservable } from "mobx";
+
 
 
 
@@ -16,18 +19,19 @@ export class PeopleListVM {
 
 
     constructor(
-        @inject(TYPES.IRepositoryPersonas)
-        private RepositoryPersonas: IRepositoryPersonas
+    @inject(TYPES.IPersonaRepositoryUseCase)
+    private usecase: IPersonaRepositoryUseCase
     ) {
 
+    this._personasList = this.usecase.getPersonas();
 
-       
-        this._personaSeleccionada = this.personasList[0]
+    this._personaSeleccionada = this._personasList.length > 0
+        ? this._personasList[0]
+        : null as any;
 
-
-        this._personasList = this.RepositoryPersonas.getListadoCompletoPersonas();
-     
+    makeAutoObservable(this);   
     }
+
 
 
     public get personasList(): Persona[] {
@@ -42,7 +46,7 @@ export class PeopleListVM {
 
     public set personaSeleccionada(value: Persona) {
         this._personaSeleccionada = value;
-        alert(`Persona seleccionada en el VM: ${this._personaSeleccionada.nombre} ${this._personaSeleccionada.apellidos}`);
+        //alert(`Persona seleccionada en el VM: ${this._personaSeleccionada.nombre} ${this._personaSeleccionada.apellidos}`);
      
     }
 

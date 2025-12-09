@@ -11,7 +11,6 @@ import { IPersonaRepositoryUseCase } from "../domain/interfaces/IPersonaReposito
 const container = new Container();
 
 
-// Vinculamos la interfaz con su implementación concreta
 container.bind<IPersonaRepository>(TYPES.IPersonaRepository).to(PersonasRepository);
 container.bind<PeopleListVM>(TYPES.IndexVM).to(PeopleListVM);
 container.bind<IPersonaRepositoryUseCase>(TYPES.IPersonaRepositoryUseCase).to(PersonaRepositoryUseCase);
