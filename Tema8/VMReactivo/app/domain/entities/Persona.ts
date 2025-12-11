@@ -6,7 +6,7 @@ export class Persona {
   direccion: string;
   foto: string;
   fechaNacimiento: Date;
-  idDepartamento: number;
+  departamento: string;
 
   constructor(
     id: number,
@@ -15,7 +15,7 @@ export class Persona {
     fechaNacimiento: Date,
     direccion: string,
     telefono: string,
-    idDepartamento: number,
+    departamento: string,
     foto: string
   ) {
     this.id = id;
@@ -24,7 +24,7 @@ export class Persona {
     this.fechaNacimiento = fechaNacimiento;
     this.direccion = direccion;
     this.telefono = telefono;
-    this.idDepartamento = idDepartamento;
+    this.departamento = departamento;
     this.foto = foto;
   }
 }
