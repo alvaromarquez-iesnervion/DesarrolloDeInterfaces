@@ -1,7 +1,7 @@
 import { IApiConnection } from "../../domain/interfaces/api/IApiConnection";
 
 export class ApiConnectionAzure implements IApiConnection {
-  private BASE_URL = "https://tu-api-azure.azurewebsites.net/api"; // Reemplazar con URL real
+  private BASE_URL = "https://crudpersona-hkhvf3gkhfgpb6cy.spaincentral-01.azurewebsites.net/API"; // Reemplazar con URL real
   private PERSONAS_ENDPOINT = "/personas";
   private DEPARTAMENTOS_ENDPOINT = "/departamentos";
 

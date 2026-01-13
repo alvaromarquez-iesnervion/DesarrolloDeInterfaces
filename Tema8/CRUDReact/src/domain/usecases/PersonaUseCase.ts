@@ -1,9 +1,14 @@
-import { Persona } from "../entities/Persona";
-import { IPersonaRepository } from "../interfaces/repos/IPersonaRepository";
+import { injectable, inject } from "inversify";
+import { TYPES } from "../../di/types";
 import { IPersonaUseCase } from "../interfaces/usecases/IPersonaUseCase";
+import { IPersonaRepository } from "../interfaces/repos/IPersonaRepository";
+import { Persona } from "../entities/Persona";
 
+@injectable() // <--- No olvides esto
 export class PersonaUseCase implements IPersonaUseCase {
-  constructor(private personaRepository: IPersonaRepository) {}
+    constructor(
+        @inject(TYPES.PersonaRepository) private personaRepository: IPersonaRepository // <--- IMPORTANTE
+    ) {}
 
   async getPersonas(): Promise<Persona[]> {
     const personas = await this.personaRepository.getAllPersonas();

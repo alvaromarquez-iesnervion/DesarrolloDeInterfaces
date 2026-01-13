@@ -1,9 +1,11 @@
+import { inject } from "inversify";
 import { Departamento } from "../../domain/entities/Departamento";
 import { IApiConnection } from "../../domain/interfaces/api/IApiConnection";
 import { IDepartamentoRepository } from "../../domain/interfaces/repos/IDepartamentoRepository";
+import { TYPES } from "@/src/di/types";
 
 export class DepartamentoRepository implements IDepartamentoRepository {
-  constructor(private apiConnection: IApiConnection) {}
+  constructor(@inject(TYPES.ApiConnection) private apiConnection: IApiConnection) {}
 
   async getAllDepartamentos(): Promise<Departamento[]> {
     const response = await fetch(this.apiConnection.getDepartamentosUrl());
