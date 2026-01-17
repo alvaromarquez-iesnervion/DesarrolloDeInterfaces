@@ -1,4 +1,3 @@
-import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { container } from "../Core/container";
@@ -15,14 +14,22 @@ const viewModel = container.get<PeopleListVM>(TYPES.IndexVM)
 
 const renderItem = ({ item }: { item: Persona }) => (
    
-      <Text style={styles.itemText}>{item.Nombre} {item.Apellidos}</Text>
+      <View style={styles.itemContainer}>
+        <View style={styles.avatar}>
+          <Text style={styles.avatarText}>
+            {item.Nombre.charAt(0).toUpperCase()}{item.Apellidos.charAt(0).toUpperCase()}
+          </Text>
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.nameText}>{item.Nombre} {item.Apellidos}</Text>
+          <Text style={styles.idText}>ID: {item.Id}</Text>
+        </View>
+      </View>
    
   );
 
 
  
-
-
     return (
       <SafeAreaView style={styles.container}>
         <Text style={styles.titulo}>Listado de Personas</Text>
@@ -33,15 +40,15 @@ const renderItem = ({ item }: { item: Persona }) => (
           keyExtractor={(item) => item.Id.toString()}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           ListEmptyComponent={() => (
+            <View style={styles.emptyContainer}>
             <Text style={styles.textoVacio}>No hay personas registradas</Text>
+            </View>
     )}
         />
        
       </SafeAreaView>
     );
   }
-
-
 
 
 const styles = StyleSheet.create({
@@ -52,40 +59,69 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   titulo: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 16,
+    marginBottom: 20,
     textAlign: "center",
+    color: "#333",
+    textShadowColor: "rgba(0,0,0,0.1)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
   },
-  item: {
+  itemContainer: {
+    flexDirection: "row",
     backgroundColor: "#FFFFFF",
-    padding: 16,
-    borderRadius: 10,
+    padding: 15,
+    borderRadius: 12,
     shadowColor: "#000",
     shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowRadius: 6,
+    elevation: 3,
+    alignItems: "center",
+    marginBottom: 10,
+    marginHorizontal: 5,
   },
-  itemPresionado: {
-    backgroundColor: "#D0E8FF",
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: "#4A90E2",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 15,
   },
-  itemText: {
-    fontSize: 16,
+  avatarText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+  },
+  textContainer: {
+    flex: 1,
+  },
+  nameText: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#333",
+    marginBottom: 4,
+  },
+  idText: {
+    fontSize: 14,
+    color: "#666",
   },
   separator: {
     height: 10,
   },
-  input: {
-    width:"80%",
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 50,
   },
   textoVacio: {
     textAlign: "center",
-    marginTop: 20,
-    fontSize: 16,
+    fontSize: 18,
     color: "#888",
+    fontStyle: "italic",
   },
 });
+
